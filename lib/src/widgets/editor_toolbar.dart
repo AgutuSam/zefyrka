@@ -385,21 +385,26 @@ class ZefyrToolbar extends StatefulWidget implements PreferredSizeWidget {
 
   const ZefyrToolbar({Key? key, required this.children}) : super(key: key);
 
-  factory ZefyrToolbar.basic(
-      {Key? key,
-      required ZefyrController controller,
-      bool hideBoldButton = false,
-      bool hideItalicButton = false,
-      bool hideUnderLineButton = false,
-      bool hideStrikeThrough = false,
-      bool hideHeadingStyle = false,
-      bool hideListNumbers = false,
-      bool hideListBullets = false,
-      bool hideCodeBlock = false,
-      bool hideQuote = false,
-      bool hideLink = false,
-      bool hideHorizontalRule = false}) {
+  factory ZefyrToolbar.basic({
+    Key? key,
+    required ZefyrController controller,
+    bool hideBoldButton = false,
+    bool hideItalicButton = false,
+    bool hideUnderLineButton = false,
+    bool hideStrikeThrough = false,
+    bool hideHeadingStyle = false,
+    bool hideListNumbers = false,
+    bool hideListBullets = false,
+    bool hideCodeBlock = false,
+    bool hideQuote = false,
+    bool hideLink = false,
+    bool hideHorizontalRule = false,
+    List<Widget> leading = const <Widget>[],
+    List<Widget> trailing = const <Widget>[],
+    bool hideAlignment = false,
+  }) {
     return ZefyrToolbar(key: key, children: [
+      ...leading,
       Visibility(
         visible: !hideBoldButton,
         child: ToggleStyleButton(
@@ -442,6 +447,42 @@ class ZefyrToolbar extends StatefulWidget implements PreferredSizeWidget {
       Visibility(
           visible: !hideHeadingStyle,
           child: SelectHeadingStyleButton(controller: controller)),
+      VerticalDivider(indent: 16, endIndent: 16, color: Colors.grey.shade400),
+      Visibility(
+        visible: !hideAlignment,
+        child: ToggleStyleButton(
+          attribute: NotusAttribute.alignment.unset,
+          icon: Icons.format_align_left,
+          controller: controller,
+        ),
+      ),
+      const SizedBox(width: 1),
+      Visibility(
+        visible: !hideAlignment,
+        child: ToggleStyleButton(
+          attribute: NotusAttribute.center,
+          icon: Icons.format_align_center,
+          controller: controller,
+        ),
+      ),
+      const SizedBox(width: 1),
+      Visibility(
+        visible: !hideAlignment,
+        child: ToggleStyleButton(
+          attribute: NotusAttribute.alignment.end,
+          icon: Icons.format_align_right,
+          controller: controller,
+        ),
+      ),
+      const SizedBox(width: 1),
+      Visibility(
+        visible: !hideAlignment,
+        child: ToggleStyleButton(
+          attribute: NotusAttribute.justify,
+          icon: Icons.format_align_justify,
+          controller: controller,
+        ),
+      ),
       VerticalDivider(indent: 16, endIndent: 16, color: Colors.grey.shade400),
       Visibility(
         visible: !hideListNumbers,
@@ -492,6 +533,7 @@ class ZefyrToolbar extends StatefulWidget implements PreferredSizeWidget {
           icon: Icons.horizontal_rule,
         ),
       ),
+      ...trailing,
     ]);
   }
 
