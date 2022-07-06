@@ -840,13 +840,19 @@ class RawEditorState extends EditorState
           ),
       tickerProvider: this,
     );
-
+// ***********************************
+// ***********************************
+// ***********************************
     // Keyboard
     _keyboardListener = keyboard.KeyboardListener(
       onCursorMovement: handleCursorMovement,
       onShortcut: handleShortcut,
       onDelete: handleDelete,
+      onEnter: handleEnter,
     );
+// ***********************************
+// ***********************************
+// ***********************************
     clipboardController =
         widget.clipboardController ?? SimpleClipboardController();
 

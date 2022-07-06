@@ -21,6 +21,7 @@ enum InputShortcut { cut, copy, paste, selectAll }
 
 typedef InputShortcutCallback = void Function(InputShortcut? shortcut);
 typedef OnDeleteCallback = void Function(bool forward);
+typedef OnEnterCallback = void Function(bool newLine);
 
 final Set<LogicalKeyboardKey> _movementKeys = <LogicalKeyboardKey>{
   LogicalKeyboardKey.arrowRight,
@@ -36,6 +37,7 @@ final Set<LogicalKeyboardKey> _shortcutKeys = <LogicalKeyboardKey>{
   LogicalKeyboardKey.keyX,
   LogicalKeyboardKey.delete,
   LogicalKeyboardKey.backspace,
+  LogicalKeyboardKey.enter,
 };
 
 final Set<LogicalKeyboardKey> _nonModifierKeys = <LogicalKeyboardKey>{
@@ -66,11 +68,13 @@ class KeyboardListener {
   final CursorMovementCallback onCursorMovement;
   final InputShortcutCallback onShortcut;
   final OnDeleteCallback onDelete;
+  final OnEnterCallback onEnter;
 
   KeyboardListener({
     required this.onCursorMovement,
     required this.onShortcut,
     required this.onDelete,
+    required this.onEnter,
   });
 
   KeyEventResult handleKeyEvent(RawKeyEvent keyEvent) {
@@ -119,6 +123,8 @@ class KeyboardListener {
         LogicalKeyboardKey.keyA: InputShortcut.selectAll,
       };
       onShortcut(_keyToShortcut[key]);
+    } else if (key == LogicalKeyboardKey.enter) {
+      onEnter(true);
     } else if (key == LogicalKeyboardKey.delete) {
       onDelete(true);
     } else if (key == LogicalKeyboardKey.backspace) {

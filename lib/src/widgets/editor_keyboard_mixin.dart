@@ -356,6 +356,33 @@ mixin RawEditorStateKeyboardMixin on EditorState {
     }
   }
 
+  void handleEnter(bool newLine) {
+    if (newLine) {
+      print('EEEEEEEEEEEEEEEEEEEEE');
+      print('ENTER PRESSED');
+      print('EEEEEEEEEEEEEEEEEEEEE');
+      // widget.controller.document.length
+// count_value / count_limit).truncate() > count_inc, count_inc = Quotient
+      // widget.controller.document.toDelta().insert({
+      //   {
+      //     "insert": "p.1",
+      //     "attributes": {"b": true, "i": true, "alignment": "right"}
+      //   },
+      //   {
+      //     "insert": "\n",
+      //     "attributes": {"block": "quote"}
+      //   },
+      //   {
+      //     "insert": {"_type": "hr", "_inline": false}
+      //   },
+      // });
+    } else {
+      print('NNNNNNNNNNNNNNNNNNNNNNNN');
+      print('ENTER NOT PRESSED');
+      print('NNNNNNNNNNNNNNNNNNNNNNNN');
+    }
+  }
+
   void handleDelete(bool forward) {
     final selection = widget.controller.selection;
     final plainText = textEditingValue.text;
