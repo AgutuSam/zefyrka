@@ -363,19 +363,19 @@ mixin RawEditorStateKeyboardMixin on EditorState {
       print('EEEEEEEEEEEEEEEEEEEEE');
       // widget.controller.document.length
 // count_value / count_limit).truncate() > count_inc, count_inc = Quotient
-      // widget.controller.document.toDelta().insert({
-      //   {
-      //     "insert": "p.1",
-      //     "attributes": {"b": true, "i": true, "alignment": "right"}
-      //   },
-      //   {
-      //     "insert": "\n",
-      //     "attributes": {"block": "quote"}
-      //   },
-      //   {
-      //     "insert": {"_type": "hr", "_inline": false}
-      //   },
-      // });
+      widget.controller.document.toDelta().insert({
+        // {
+        //   'insert': 'p.1',
+        //   'attributes': {'b': true, 'i': true, 'alignment': 'right'}
+        // },
+        // {
+        //   'insert': '\n',
+        //   'attributes': {'block': 'quote'}
+        // },
+        {
+          'insert': {'_type': 'hr', '_inline': false}
+        },
+      });
     } else {
       print('NNNNNNNNNNNNNNNNNNNNNNNN');
       print('ENTER NOT PRESSED');
