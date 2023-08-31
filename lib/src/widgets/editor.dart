@@ -720,7 +720,7 @@ abstract class EditorState extends State<RawEditor> {
   void requestKeyboard();
 }
 
-class RawEditorState extends EditorState
+abstract class RawEditorState extends EditorState
     with
         AutomaticKeepAliveClientMixin<RawEditor>,
         WidgetsBindingObserver,
